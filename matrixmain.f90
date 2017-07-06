@@ -135,6 +135,7 @@ contains
     !xxprint *, 'idx',this%idx
     !xxprint *, 'values',this%values
       !now want size of values relayed back to main function to see if matrix input lies in this
+
   end subroutine
   ! subroutine valueset(this,)
   !   real(kind=dp)
@@ -167,6 +168,8 @@ contains
     class(matrix), intent(in) :: this
     real(kind=dp) :: found
     integer :: rsel,csel
+
+
     if(any(this%idx==(csel-rsel))) then
 
       found=this%values(rsel,(minloc(this%idx,dim=1,mask=this%idx == (csel-rsel))))
@@ -183,15 +186,19 @@ contains
     integer :: max
     integer :: count
     integer :: count2
-    integer,dimension(:),allocatable :: matrixrow
+    real(kind=dp),dimension(:),allocatable :: matrixrow
+
+
     allocate(matrixrow(this%matrixsize))
     max=101!what's max matrix size to !xxprint?
+
     if (this%matrixsize>max) then
       print*, 'matrix is too large'
     else
       do count=1,this%matrixsize
         do count2=1,this%matrixsize
         matrixrow(count2)=this%getvalue(count,count2)
+
         end do
         print*,'row',count,'  ',matrixrow
       end do

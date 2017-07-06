@@ -7,7 +7,8 @@ LD=gfortran
 OBJS=			constants.o				\
 			matrixmain.o					\
 			bicg.o								\
-			neutronsolve.o
+			neutronsolve.o				\
+			neutronprog.o
 
 #Set up the MODS so it contains the same as OBJS but with the .o replaced by .mod
 MODS= $(OBJS:.o=.mod)
